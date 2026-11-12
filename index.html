@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surprise Scanner 🔍</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<header class="topbar">
+  <h1 class="logo"><span class="logo-icon">🔍</span> Surprise Scanner</h1>
+  <p class="tagline">Scan anything imaginary &amp; discover what hides inside</p>
+</header>
+
+<main class="wrap">
+  <!-- ===== Scan form ===== -->
+  <section class="panel scanner-panel">
+    <h2 class="panel-title">New scan</h2>
+
+    <form id="scan-form" autocomplete="off">
+      <label class="field-label" for="scan-name">What are you scanning?</label>
+      <input id="scan-name" class="text-input" type="text" maxlength="40"
+             placeholder="e.g. grandma's attic, fridge, old book..." />
+
+      <label class="field-label" for="scan-image">Or add a photo to scan</label>
+      <div id="drop-zone" class="drop-zone">
+        <input id="scan-image" class="file-input" type="file" accept="image/*" hidden />
+        <div id="drop-hint" class="drop-hint">
+          <span class="drop-icon">🖼️</span>
+          <span class="drop-text">Click or drag an image here</span>
+          <span class="drop-sub">JPG, PNG, GIF, WebP · max 5 MB</span>
+        </div>
+        <img id="thumb" class="thumb is-hidden" alt="Scan target preview" />
+        <button id="remove-img" class="remove-img is-hidden" type="button" title="Remove image">✕</button>
+      </div>
+
+      <div class="row">
+        <button id="scan-btn" class="btn btn-primary" type="submit">
+          <span class="btn-emoji">📡</span> Start Scan
+        </button>
+        <button id="dice-btn" class="btn btn-ghost" type="button" title="Random idea">
+          🎲 Suggest
+        </button>
+      </div>
+    </form>
+
+    <!-- Scanner viewport -->
+    <div id="scope" class="scope is-idle">
+      <div id="beam" class="beam"></div>
+      <div id="grid" class="grid-overlay"></div>
+      <div id="corner-brackets" class="brackets">
+        <i></i><i></i><i></i><i></i>
+      </div>
+      <p id="scope-msg" class="scope-msg">Ready to scan</p>
+      <div id="result-card" class="result-card"></div>
+    </div>
+
+    <div id="progress-wrap" class="progress-wrap is-hidden">
+      <div id="progress-bar" class="progress-bar"></div>
+      <p id="status-text" class="status-text">Analyzing...</p>
+    </div>
+  </section>
+
+  <!-- ===== History ===== -->
+  <section class="panel history-panel">
+    <div class="history-head">
+      <h2 class="panel-title">Scan log</h2>
+      <span id="count-badge" class="count-badge">0</span>
+    </div>
+    <p id="empty-note" class="empty-note">No scans yet. Point the beam at something above. 👆</p>
+    <ul id="history-list" class="history-list"></ul>
+    <button id="clear-btn" class="btn btn-danger is-hidden" type="button">🗑 Clear log</button>
+  </section>
+</main>
+
+<footer class="foot">Made for curiosity · every scan hides a surprise 🎁</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
